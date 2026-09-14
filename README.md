@@ -5,13 +5,12 @@ Minecraft Java Edition için voxel tabanlı, gerçek zamanlı ışın izlemeli (
 ## Gereksinimler
 
 - **Iris 1.6 veya daha yeni** + Sodium. OptiFine desteklenmez.
-- OpenGL 4.3 destekleyen ekran kartı (NVIDIA GTX 900+, AMD RX 400+, yeni Intel). macOS desteklenmez.
+- OpenGL 4.3 destekleyen ekran kartı (NVIDIA GTX 900+, AMD RX 400+, yeni Intel).
 
-## Kurulum
-
-1. Zip dosyasını **açmadan** `.minecraft/shaderpacks/` klasörüne koyun.
-2. Oyunda **O** tuşuna basın (veya Seçenekler → Video Ayarları → Shader Paketleri) ve **CORAL VXGI**'yi seçin.
-3. Ayarlar için paket adının yanındaki ayar düğmesine tıklayın. Her ayarın üzerine fareyle gelince açıklaması çıkar.
+## Bilinen Sorunlar
+- macOS resmi olarak desteklenmiyor ama çalışır ise şanslısınız.
+- Denoise flitresi yeterince iyi değil karıncalanma durumu oluyor.
+- 
 
 ## Özellikler
 
@@ -26,30 +25,6 @@ Minecraft Java Edition için voxel tabanlı, gerçek zamanlı ışın izlemeli (
 - LabPBR kaynak paketi desteği, modlu ışık kaynaklarını otomatik algılama
 - Overworld, Nether ve End için ayrı aydınlatma
 
-## Ayarlar menüsü
-
-| Sayfa | İçerik |
-|---|---|
-| Hakkında | Yapımcı, sürüm, iletişim, gereksinimler, performans ipuçları |
-| Işın İzleme (GI) | Işın adımları, menzil, güçler, gürültü giderici, ışık kaynağı renkleri |
-| Yansımalar | Voxel/ekran uzayı yansımaları, su, cam, blok pürüzsüzlükleri, LabPBR |
-| Aydınlatma | Güneş, ay, gökyüzü, blok ışığı rengi ve eğrisi, el ışığı, Nether/End |
-| Gölgeler | Çözünürlük, mesafe, yumuşaklık, örnek sayısı, bozulma, kayma |
-| Gökyüzü ve Sis | Güneş diski, gün batımı, yıldızlar, bulutlar, sis |
-| Su | Dalgalar, kırılma, derinlik kararması, ışık desenleri, su altı sisi |
-| Son İşleme | Parlama, pozlama, ton eşleme, doygunluk, kontrast, kenar kararması |
-| Hata Ayıklama | 21 isimli görünüm, bölünmüş ekran, NaN tespiti, gölge haritası önizleme |
-
-## Performans
-
-FPS düşükse sırasıyla deneyin:
-
-1. Profili **Düşük** yapın.
-2. **Voxel Menzili**'ni 128'e indirin.
-3. **Blok Şekilleri**'ni kapatın (ince bloklar gölge yapmaz ama hızlanır).
-4. **GI Işın Adımları**'nı düşürün.
-5. **Gölge Çözünürlüğü**'nü 1024 yapın.
-6. Minecraft görüş mesafesini azaltın.
 
 ## Yapımcı
 
