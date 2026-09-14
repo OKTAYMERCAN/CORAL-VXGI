@@ -1,19 +1,15 @@
-# 🌋 CORAL VXGI
+# 🪸 CORAL VXGI
 
-![License](https://img.shields.io/badge/license-All%20Rights%20Reserved-lightgrey.svg)
 ![Platform](https://img.shields.io/badge/platform-Minecraft%20Java-darkgreen.svg)
 ![Loader](https://img.shields.io/badge/requires-Iris%20%2B%20Sodium-blue.svg)
-![Language](https://img.shields.io/badge/language-TR%20%7C%20EN-blue.svg)
-![Settings](https://img.shields.io/badge/settings-200%2B-orange.svg)
 ![PBR](https://img.shields.io/badge/LabPBR-supported-purple.svg)
 
-CORAL VXGI is a voxel based, real time **ray traced global illumination** shaderpack for Minecraft Java Edition. Every frame, the world around you is copied into a 3D voxel grid and light is traced through it — so a torch behind a trapdoor casts the shape of its holes, a nether portal fills the room with purple, and sunlight bouncing off an orange ceiling tints everything below it.
-
-This is **world space** GI, not screen space. Objects behind you and outside your view still light the scene.
+CORAL VXGI is a voxel based, real time **ray traced global illumination** shaderpack for Minecraft Java Edition. Very customizable shaderpack, you can thinkerin almost every settings in shaderpack settings.
 
 ## 🚀 Key Features
 
 * ✅ **Ray traced global illumination** — multi-bounce light transport through a voxel copy of the world, with real colour bleeding from every surface it touches.
+* ✅ **World Space global illumination** — not screen space, Objects behind you and outside your view still light the scene.
 * ✅ **Ray traced block lights** — torches, lava, lamps and portals are sampled directly with shadow rays, so they cast real, shaped shadows instead of the flat vanilla light map.
 * ✅ **Real block shapes** — each block's bounding box is measured automatically during voxelisation. Torches, doors, trapdoors, slabs, carpets and anvils no longer block a whole cube of light.
 * ✅ **Shaped holes** — the holes in trapdoors and similar blocks are recorded at up to 16×16 per block, so light falls through them in the correct pattern.
@@ -26,14 +22,8 @@ This is **world space** GI, not screen space. Objects behind you and outside you
 * ✅ **LabPBR support** — smoothness, metalness, emission, normal mapping and parallax occlusion mapping.
 * ✅ **200+ settings** across 15 pages, every single one with a hover description, in **Turkish and English**.
 * ✅ **22 debug views** — inspect albedo, normals, raw GI, the voxel world, block lights and more, with split screen comparison.
-
-## 💻 Installation
-
-1. Install **Iris** and **Sodium**.
-2. Put the `.zip` in `.minecraft/shaderpacks/` — **do not unzip it**.
-3. In game press **O** (or Options → Video Settings → Shader Packs) and select **CORAL VXGI**.
-4. Click the settings button next to the pack name to configure it. Hover any option for an explanation.
-
+* ✅ **And more...** — I still actively add tons of feature.
+  
 > [!IMPORTANT]
 > Iris stores your settings in a `.txt` file next to the pack, named after the zip. When updating, delete the old zip **and** its `.txt`, otherwise your saved settings override the new defaults.
 
@@ -48,6 +38,37 @@ This is **world space** GI, not screen space. Objects behind you and outside you
 *(Shaped shadows through trapdoors)*
 
 *(Water refraction and caustics)*
+
+## 🗺️ Planned Features
+
+* 🔜 **Sharpening pass (RCAS)** — to offset the softness that TAA and the denoiser introduce.
+* 🔜 **Half resolution GI with upscaling** — a large performance win for weaker systems.
+* 🔜 **Volumetric clouds** — cumulus and blocky vanilla-style variants you can fly through.
+* 🔜 **Entity voxelisation** — so mobs and players block and bounce light, not just cast sun shadows.
+* 🔜 **Improved caustics** — currently an approximation rather than true light focusing.
+* 🔜 **FSR** — İmprove visuals and Performance
+* 🔜 **Antialising** — For Good visuals far views
+* 🔜 **Distant Horizon and VOXY support** — Far far land...
+* 🔜 **Wider driver compatibility** — lowering the OpenGL requirement below 4.3 where possible.
+
+## 🐛 Known Issues
+
+* **Mobs, players and plants are not in the voxel grid.** They cast sun shadows, but they do not block or bounce ray traced light.
+* **GI is limited to the voxel range** (128–256 blocks). Outside it, lighting falls back to the vanilla light map.
+* **Fences, iron bars and other lattice shaped blocks are not voxelised**, because a bounding box would be far larger than the real shape.
+* **TAA and the denoiser both soften the image.** There is no sharpening pass yet — see Planned Features. Lower *Jitter Amount* and *Noise Tolerance* if it bothers you.
+* **Hole shadows only work for blocks drawn in the shadow pass.** A block that is never rendered there is treated as solid.
+* **Normal mapping and POM need a LabPBR resource pack.** Without one they do nothing, which is why they ship disabled.
+* **Reflections on rough surfaces are approximated** with a fixed jitter rather than proper multi-sampling.
+* **Requires a fairly recent GPU.** Voxel ray tracing is expensive; older hardware will struggle even on the Low profile.
+* **Optifine Not supporting
+* **MAC not officially supported but if it works then it is good to you.
+
+## 📋 Requirements
+
+* Minecraft Java Edition with **Iris 1.6+** and **Sodium**
+* A GPU supporting **OpenGL 4.3**
+* **OptiFine is not supported.** **macOS is not supported.**
 
 ## ⚙️ Settings
 
@@ -70,36 +91,5 @@ Everything is configurable in game, no file editing required:
 
 Custom block groups live in `shaders/block.properties`; menu text lives in `shaders/lang/`. Full internals are documented in `DOKUMANTASYON.md`.
 
-## 🗺️ Planned Features
-
-* 🔜 **Sharpening pass (RCAS)** — to offset the softness that TAA and the denoiser introduce.
-* 🔜 **Half resolution GI with upscaling** — a large performance win for weaker systems.
-* 🔜 **Volumetric clouds** — cumulus and blocky vanilla-style variants you can fly through.
-* 🔜 **Entity voxelisation** — so mobs and players block and bounce light, not just cast sun shadows.
-* 🔜 **Improved caustics** — currently an approximation rather than true light focusing.
-* 🔜 **Wider driver compatibility** — lowering the OpenGL requirement below 4.3 where possible.
-
-## 🐛 Known Issues
-
-* **Mobs, players and plants are not in the voxel grid.** They cast sun shadows, but they do not block or bounce ray traced light.
-* **GI is limited to the voxel range** (128–256 blocks). Outside it, lighting falls back to the vanilla light map.
-* **Fences, iron bars and other lattice shaped blocks are not voxelised**, because a bounding box would be far larger than the real shape.
-* **TAA and the denoiser both soften the image.** There is no sharpening pass yet — see Planned Features. Lower *Jitter Amount* and *Noise Tolerance* if it bothers you.
-* **Hole shadows only work for blocks drawn in the shadow pass.** A block that is never rendered there is treated as solid.
-* **Normal mapping and POM need a LabPBR resource pack.** Without one they do nothing, which is why they ship disabled.
-* **Reflections on rough surfaces are approximated** with a fixed jitter rather than proper multi-sampling.
-* **Requires a fairly recent GPU.** Voxel ray tracing is expensive; older hardware will struggle even on the Low profile.
-
-## 📋 Requirements
-
-* Minecraft Java Edition with **Iris 1.6+** and **Sodium**
-* A GPU supporting **OpenGL 4.3**
-* **OptiFine is not supported.** **macOS is not supported.**
-
-## 👤 Credits
-
-Created by **Oktay Mercan** — [YouTube](https://www.youtube.com/OKTAYMERCAN)
-
-Developed with AI assistance (Claude, Anthropic): the voxel ray tracer, the direct light sampling and the lighting pipeline were designed and written together with it.
-
-Thanks to the Iris and Sodium teams for the shader pipeline, and to the Minecraft shader community for the voxel ray tracing ideas.
+## Contains AI-generated code, assets, and text Made with AI.
+ I wanted to create my own shaderpack because the existing ones are either paid or locked behind paywalls or subscriptions. I decided to make my own, but due to life circumstances, I didn't have the time or the necessary skills to do it from scratch. So, I purchased a paid AI subscription to test how much the technology has advanced and what it's capable of, while also bringing my dream of a flawless shaderpack to life to share with the community.
