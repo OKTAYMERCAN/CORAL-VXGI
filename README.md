@@ -63,14 +63,16 @@ I wanted to create my own shaderpack because the existing ones are either paid o
 * **Normal mapping and POM need a LabPBR resource pack.** Without one they do nothing, which is why they ship disabled.
 * **Reflections on rough surfaces are approximated** with a fixed jitter rather than proper multi-sampling.
 * **Requires a fairly recent GPU.** Voxel ray tracing is expensive; older hardware will struggle even on the Low profile.
-* **Optifine Not supporting
-* **MAC not officially supported but if it works then it is good to you.
+* **Optifine Not supporting**
+* **MAC not officially supported** but if it works then it is good to you.
+* **POM** not work correctly.
 
 ## 📋 Requirements
 
 * Minecraft Java Edition with **Iris 1.6+** and **Sodium**
 * A GPU supporting **OpenGL 4.3**
-* **OptiFine is not supported.** **macOS is not supported.**
+* **OptiFine is not supported.**
+* **macOS is not supported.**
 
 ## ⚙️ Settings
 
