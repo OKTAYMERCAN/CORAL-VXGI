@@ -20,7 +20,7 @@ CORAL VXGI is a voxel based, real time **ray traced global illumination** shader
 * ✅ **TAA** — sub-pixel jitter with reprojection and neighbourhood clamping for clean edges.
 * ✅ **Water** — refraction, depth based absorption, caustics, animated waves and biome tinted underwater fog.
 * ✅ **LabPBR support** — smoothness, metalness, emission, normal mapping and parallax occlusion mapping.
-* ✅ **200+ settings** across 15 pages, every single one with a hover description, in **Turkish and English**.
+* ✅ **200+ settings** — every single one with a hover description.
 * ✅ **22 debug views** — inspect albedo, normals, raw GI, the voxel world, block lights and more, with split screen comparison.
 * ✅ **And more...** — I still actively add tons of feature.
   
