@@ -1,4 +1,4 @@
-# CORAL VXGI 1.2
+# CORAL VXGI
 
 Minecraft Java Edition için voxel tabanlı, gerçek zamanlı ışın izlemeli (ray traced) shader paketi.
 
