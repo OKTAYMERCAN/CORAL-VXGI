@@ -1,0 +1,54 @@
+====================================================================
+CORAL VXGI LICENSE & TERMS OF USE
+Copyright (C) 2026 OKTAY MERCAN. 
+All Rights Reserved unless otherwise explicitly stated.
+
+By downloading this project or associated files, you agree to the terms
+and conditions detailed below.
+====================================================================
+
+0. DEFINITIONS
+"Copyright" also means copyright-like laws that apply to other kinds of works.
+"The Project" refers to any copyrightable work licensed under this License. 
+"The Author" refers to the original creator of this project, OKTAY MERCAN.
+To "modify" a work means to copy from or adapt all or part of the work in a fashion requiring copyright permission, other than the making of an exact copy. The resulting work is called a "modified version".
+To "propagate" or "convey" a work means to do anything with it that, without permission, would make you liable for infringement, such as copying, distribution, and making it available to the public.
+
+1. PATENT AND COPYRIGHT TROLL PROTECTION
+If any user or entity institutes patent litigation or copyright infringement claims against any party alleging that this Project constitutes direct or contributory infringement, then any rights or licenses granted to that user/entity under this License shall terminate automatically and permanently as of the date such litigation is filed.
+
+2. CONTENT CREATION (VIDEOS & STREAMS)
+You are freely permitted and encouraged to use this Project in content creation (e.g., YouTube, Twitch, TikTok, etc.).
+- EXPLICIT ATTRIBUTION REQUIRED: You MUST clearly credit the Project. The exact name of the shaderpack and a direct link to the official download page MUST be visibly placed in the video description or clearly displayed on-screen.
+
+3. MODPACK USAGE
+You are permitted to include this Project in public or private Minecraft modpacks.
+- EXPLICIT ATTRIBUTION REQUIRED: You MUST explicitly state the name of the Project and credit The Author, OKTAY MERCAN, in the modpack's credit list, description page, and/or manifesto file.
+
+4. REDISTRIBUTION & STRICT NON-COMMERCIAL POLICY
+Except as permitted in Section 3 (Modpacks), public propagation of this Project requires you to exclusively use the official links provided by The Author. Independently hosting a copy of this Project and propagating it is strictly prohibited.
+- NO MONETIZATION: You MAY NOT sell, rent, or lease this Project.
+- NO PAYWALLS: You MAY NOT lock this Project behind paywalls (e.g., Patreon, Ko-fi, exclusive memberships).
+- NO AD-LINKS: The usage of link monetization services (e.g., AdFly, Linkvertise) on redistribution is strictly prohibited.
+Websites and Blogs collecting similar projects are required to ask for explicit permission from The Author before adding this Project to their database.
+
+5. PRIVATE MODIFICATIONS
+Users are allowed to create private modifications of this Project for personal use without explicit permission. However, public redistribution of these modified versions is strictly prohibited unless explicit permission is granted by The Author.
+
+6. PUBLIC MODIFICATIONS & USAGE OF CODE OR ASSETS
+Public redistribution of a modified version of this Project, or using parts of its source code or assets in another project, REQUIRES EXPLICIT WRITTEN PERMISSION from The Author. 
+If permission is granted by The Author, the following conditions automatically apply:
+a) CLEAR CREDIT: The original Project and The Author MUST be explicitly and clearly credited.
+b) SAME LICENSE: The modified version MUST use and include this exact same license.
+c) NON-COMMERCIAL: Any means of monetization or paywalls for this modified version are strictly prohibited.
+
+7. LIABILITY
+THE PROJECT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHOR OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE PROJECT OR THE USE OR OTHER DEALINGS IN THE PROJECT.
+
+8. DISCLAIMER
+This License and its terms are subject to change and review at any time by The Author.
+
+9. CONTACT & PERMISSIONS
+To request explicit written permission for modifications, code/asset usage, modpack inclusions beyond the standard terms, or any other inquiries, you must contact The Author via official channels:
+- Official Page: https://github.com/OKTAYMERCAN/CORAL-VXGI
+- Email: oktaylamacera@gmail.com
