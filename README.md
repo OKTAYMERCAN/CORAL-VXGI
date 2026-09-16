@@ -6,7 +6,7 @@
 
 CORAL VXGI is a voxel based, real time **ray traced global illumination** shaderpack for Minecraft Java Edition. Very customizable shaderpack, you can thinkerin almost every settings in shaderpack settings.
 
-I wanted to create my own shaderpack because the existing ones are either paid or locked behind paywalls or subscriptions thats frustrathing. I decided to make my own, but due to life circumstances, I didn't have the time or the necessary skills to do it from scratch. So, I purchased a paid AI subscription and then start making CORAL VXGI to test how much the technology has advanced and what it's capable of, while also bringing my dream of a flawless shaderpack to life to share with the community.
+I wanted to create my own shaderpack because the existing ones are either paid or locked behind paywalls or subscriptions thats frustrathing. I decided to make my own, but due to life circumstances, I didn't have the time or the necessary skills to do it from scratch. So, I purchased a paid AI subscription (Claude Pro) and then start making CORAL VXGI to test how much the technology has advanced and what it's capable of, while also bringing my dream of a flawless shaderpack to life to share with the community.
 
 ## 🚀 Key Features
 
@@ -95,4 +95,5 @@ Everything is configurable in game, no file editing required:
 
 Custom block groups live in `shaders/block.properties`; menu text lives in `shaders/lang/`. Full internals are documented in `DOKUMANTASYON.md`.
 
-## Contains AI-generated code, assets, and text Made with AI.
+---
+Contains AI-generated code, assets, and text Made with AI.
