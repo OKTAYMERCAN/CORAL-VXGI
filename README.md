@@ -36,53 +36,6 @@ I wanted to create my own shaderpack because the existing ones are either paid o
 * ✅ **23 debug views** — inspect albedo, normals, raw GI, the voxel world, block lights and more, with split screen comparison.
 * ✅ **And more...** — I still actively add tons of features.
 
-> [!IMPORTANT]
-> Iris stores your settings in a `.txt` file next to the pack, named after the zip. When updating, delete the old zip **and** its `.txt`, otherwise your saved settings override the new defaults.
-
-> [!TIP]
-> If the framerate is low, switch the profile to **Low** first, then reduce **Voxel Range** to 128 and lower **GI Ray Steps**.
-
-## 📸 Screenshots
-
-<!-- Replace the placeholders below with your own screenshots -->
-*(Global illumination and coloured block lights)*
-
-*(Shaped shadows through trapdoors)*
-
-*(Water refraction and caustics)*
-
-*(The water surface seen from below)*
-
-## 🗺️ Planned Features
-
-* 🔜 **FSR upscaling** — the sharpening half of FSR already ships; the upscaler does not.
-* 🔜 **Distant Horizons and VOXY support** — far far land...
-* 🔜 **Wider driver compatibility** — lowering the OpenGL requirement below 4.3 where possible.
-
-## 🐛 Known Issues
-
-* **Far block lights are gathered by region.** Within 48 blocks every light region is listed on its own; further out lights are gathered per 32-block region, and each list keeps the brightest regions only (**Light Regions per List**, 64 by default). In a huge lava ocean or the Nether the regions that do not fit are lit by bounced rays only, which are noisier.
-* **Entities are boxes to light and shadows.** Each block of space an entity touches holds one box around its parts there, so a mob's shadow in torch light is blocky at close range. Reflections use the textured 1/8-block copy instead, but that copy is coarse for small details (the texture of a held item), and up to 1024 blocks of space get one (2048 at Entity Range 64); beyond that a mob shows as boxes in reflections. Entities are only traced within 32 blocks (64 at most), give off no light of their own, and all of it needs Iris 1.8 (Minecraft 1.21 or newer). Plants are not in the voxel grid either.
-* **Mobs and held items reflect only when you ask.** Their own surfaces get ray traced reflections with **Mobs and Items Reflect** (off by default), because a moving mob never keeps a steady reflection; without it, iron golems and armor from a LabPBR resource pack look like smooth plastic rather than mirrors. Mobs do appear *in* the reflections of other surfaces by default.
-* **Caustics come from the sun and moon only** and follow the pack's own wave field; they fade out in rain, and light from torches or lava makes none.
-* **Hole shadows depend on the sun.** Where the sun sees a trapdoor or door edge-on, its holes cannot be recorded; it then passes light evenly by how empty its texture is instead of in the shape of its holes.
-* **The water surface from below is softened on purpose.** Real water shows the sky only inside a circle above you (Snell's window); by default the pack blends sky and mirror over a wide range of angles and lets the waves decide it ripple by ripple, so no circle shows. Set **Sky Circle Softness** to 0 for the physical circle. Where the bent view of the sky leaves the screen, the sky is worked out again with its clouds, which costs a little while you look up from under water.
-* **A long underwater mirror costs time.** **Underwater Mirror Reach** goes up to 512 blocks, but the mirror also needs enough Reflection Ray Steps to get that far and ends at the edge of the ray traced area.
-* **With Block Shapes off**, a light ray that starts inside a block by mistake can still leave it through the far side (a slab's top lies inside its own full cube there, so the start cannot be checked). The camera-facing start point makes this rare; keep Block Shapes on (the default) for the cleanest corners.
-* **GI is limited to the voxel range** (128–512 blocks). Outside it, lighting falls back to the vanilla light map. Minecraft's full 32 chunks would need a 1024-block area, which is more video memory and larger 3D images than drivers have to allow.
-* **Large Voxel Ranges pull the shadows along.** Iris only builds the voxel world from chunks the shadow pass draws, so Shadow Distance is raised to what the Voxel Range needs (72 to 264 blocks). At 384 and 512 that spreads the shadow map thinner (raise Shadow Resolution), fixes Hole Detail at 8, and needs a Render Distance of at least 13 / 17 chunks.
-* **Fences are simplified**: a fence's two rails count as one solid arm, so a little more shadow falls through the gap between them than in reality.
-* **The world GI cache holds one value per block face.** When a torch is placed or broken, the bounced part of its light fades in or out over up to a second; the direct light and the first bounce react at once. A Cache Radius above 32 takes another 0.25 GB of video memory.
-* **Reflections on rough surfaces trace one jittered ray per frame**, so they are grainy unless the Reflection Denoiser is turned on (it ships off) or TAA smooths them over time.
-* **Mirrored textures can come out flipped in reflections.** Textured voxels record how each face's texture is turned, but not a texture the block model mirrors (a door hinged on the other side).
-* **Hole shadows only work for blocks drawn in the shadow pass.** A block that is never rendered there is treated as solid.
-* **Tinted glass blocks sunlight only with Coloured Shadows on** (the default); without it no glass casts a sun shadow.
-* **Volumetric clouds are Overworld only**, cast no shadows, and are ray-marched again in sky reflections and in the sky seen through the water surface from below, which costs time on large water surfaces.
-* **Normal mapping and POM need a LabPBR resource pack.** Without one they do nothing. Normal mapping is on from the Medium profile up; parallax is Ultra only, because it is the most expensive setting in the pack.
-* **Requires a fairly recent GPU.** Voxel ray tracing is expensive; older hardware will struggle even on the Low profile.
-* **OptiFine and Oculus are not supported.**
-* **macOS is not supported** — Apple's OpenGL stops at 4.1 and has no image load/store, which the voxel grid needs.
-
 ## 📋 Requirements
 
 | | |
@@ -110,6 +63,65 @@ On top of Minecraft's own usage. Screen buffers are about **0.35 GB at 1080p**, 
 
 The hole mask of **Shaped Holes** is the largest single part (50 / 151 / 268 MB at Voxel Range 128 / 192 / 256); dropping **Hole Detail** from 16 to 8 cuts it to a quarter. **Textured Voxel Reflections** take 50 / 151 / 268 MB (604 MB / 1.07 GB at 384 / 512), the world GI cache about 35 MB (0.25 GB with a Cache Radius above 32) and the entity grid about 6 MB (38 MB at Entity Range 64).
 
+> [!IMPORTANT]
+> Iris stores your settings in a `.txt` file next to the pack, named after the zip. When updating, delete the old zip **and** its `.txt`, otherwise your saved settings override the new defaults.
+
+> [!TIP]
+> .
+
+## 📸 Screenshots
+<img width="2560" height="1365" alt="2026-09-26_00 52 09" src="https://github.com/user-attachments/assets/8dff6746-7f41-48b8-983b-66458598467e" />
+
+<!-- Replace the placeholders below with your own screenshots -->
+*(Global illumination and coloured block lights)*
+<img width="2560" height="1365" alt="2026-09-26_00 45 27" src="https://github.com/user-attachments/assets/ceea6fca-6744-4a5b-8f4f-f6539918ea12" />
+<img width="2560" height="1365" alt="2026-09-26_00 48 10" src="https://github.com/user-attachments/assets/f33e98a2-38e1-4be3-95c9-f5e326e126ff" />
+<img width="2560" height="1365" alt="2026-09-26_00 46 45" src="https://github.com/user-attachments/assets/4a13000f-40ab-4558-a1e1-af288b06dcb3" />
+<img width="2560" height="1365" alt="2026-09-26_00 46 27" src="https://github.com/user-attachments/assets/edc0b62b-30f1-4d74-bc9a-32ed3d3622c2" />
+
+*(Water refraction and caustics)*
+<img width="2560" height="1365" alt="2026-09-26_00 23 58" src="https://github.com/user-attachments/assets/fa898c2f-8276-437d-b17a-c7f2bcd413da" />
+
+*(The water surface seen)*
+<img width="2560" height="1365" alt="2026-09-26_00 57 05" src="https://github.com/user-attachments/assets/cbc000e6-9fb1-414c-85a5-99b02589c8da" />
+
+<img width="2560" height="1365" alt="2026-09-25_00 43 33" src="https://github.com/user-attachments/assets/50166e05-08e5-45d5-bd56-fd873e79f5ba" />
+
+*(PBR)*
+<img width="2560" height="1365" alt="2026-09-26_00 50 05" src="https://github.com/user-attachments/assets/f65e5f02-67bb-4d32-b907-6f92f83b85bd" />
+
+*(Shadows and Mob shadows)*
+<img width="2560" height="1365" alt="2026-09-26_00 46 01" src="https://github.com/user-attachments/assets/dc4ee608-f37f-45c9-955b-fba8b12c8682" />
+
+## 🗺️ Planned Features
+
+* 🔜 **Distant Horizons and VOXY support** — far far land...
+* 🔜 **Performance Improvements** — For Mid and low end devices...
+  
+## 🐛 Known Issues
+
+* **Far block lights are gathered by region.** Within 48 blocks every light region is listed on its own; further out lights are gathered per 32-block region, and each list keeps the brightest regions only (**Light Regions per List**, 64 by default). In a huge lava ocean or the Nether the regions that do not fit are lit by bounced rays only, which are noisier.
+* **Entities are boxes to light and shadows.** Each block of space an entity touches holds one box around its parts there, so a mob's shadow in torch light is blocky at close range. Reflections use the textured 1/8-block copy instead, but that copy is coarse for small details (the texture of a held item), and up to 1024 blocks of space get one (2048 at Entity Range 64); beyond that a mob shows as boxes in reflections. Entities are only traced within 32 blocks (64 at most), give off no light of their own, and all of it needs Iris 1.8 (Minecraft 1.21 or newer). Plants are not in the voxel grid either.
+* **Mobs and held items reflect only when you ask.** Their own surfaces get ray traced reflections with **Mobs and Items Reflect** (off by default), because a moving mob never keeps a steady reflection; without it, iron golems and armor from a LabPBR resource pack look like smooth plastic rather than mirrors. Mobs do appear *in* the reflections of other surfaces by default.
+* **Caustics come from the sun and moon only** and follow the pack's own wave field; they fade out in rain, and light from torches or lava makes none.
+* **Hole shadows depend on the sun.** Where the sun sees a trapdoor or door edge-on, its holes cannot be recorded; it then passes light evenly by how empty its texture is instead of in the shape of its holes.
+* **The water surface from below is softened on purpose.** Real water shows the sky only inside a circle above you (Snell's window); by default the pack blends sky and mirror over a wide range of angles and lets the waves decide it ripple by ripple, so no circle shows. Set **Sky Circle Softness** to 0 for the physical circle. Where the bent view of the sky leaves the screen, the sky is worked out again with its clouds, which costs a little while you look up from under water.
+* **A long underwater mirror costs time.** **Underwater Mirror Reach** goes up to 512 blocks, but the mirror also needs enough Reflection Ray Steps to get that far and ends at the edge of the ray traced area.
+* **With Block Shapes off**, a light ray that starts inside a block by mistake can still leave it through the far side (a slab's top lies inside its own full cube there, so the start cannot be checked). The camera-facing start point makes this rare; keep Block Shapes on (the default) for the cleanest corners.
+* **GI is limited to the voxel range** (128–512 blocks). Outside it, lighting falls back to the vanilla light map. Minecraft's full 32 chunks would need a 1024-block area, which is more video memory and larger 3D images than drivers have to allow.
+* **Large Voxel Ranges pull the shadows along.** Iris only builds the voxel world from chunks the shadow pass draws, so Shadow Distance is raised to what the Voxel Range needs (72 to 264 blocks). At 384 and 512 that spreads the shadow map thinner (raise Shadow Resolution), fixes Hole Detail at 8, and needs a Render Distance of at least 13 / 17 chunks.
+* **Fences are simplified**: a fence's two rails count as one solid arm, so a little more shadow falls through the gap between them than in reality.
+* **The world GI cache holds one value per block face.** When a torch is placed or broken, the bounced part of its light fades in or out over up to a second; the direct light and the first bounce react at once. A Cache Radius above 32 takes another 0.25 GB of video memory.
+* **Reflections on rough surfaces trace one jittered ray per frame**, so they are grainy unless the Reflection Denoiser is turned on (it ships off) or TAA smooths them over time.
+* **Mirrored textures can come out flipped in reflections.** Textured voxels record how each face's texture is turned, but not a texture the block model mirrors (a door hinged on the other side).
+* **Hole shadows only work for blocks drawn in the shadow pass.** A block that is never rendered there is treated as solid.
+* **Tinted glass blocks sunlight only with Coloured Shadows on** (the default); without it no glass casts a sun shadow.
+* **Volumetric clouds are Overworld only**, cast no shadows, and are ray-marched again in sky reflections and in the sky seen through the water surface from below, which costs time on large water surfaces.
+* **Normal mapping and POM need a LabPBR resource pack.** Without one they do nothing. Normal mapping is on from the Medium profile up; parallax is Ultra only, because it is the most expensive setting in the pack.
+* **Requires a fairly recent GPU.** Voxel ray tracing is expensive; older hardware will struggle even on the Low profile.
+* **OptiFine and Oculus are not supported.**
+* **macOS is not supported** — Apple's OpenGL stops at 4.1 and has no image load/store, which the voxel grid needs.
+
 ## ⚙️ Settings
 
 Everything is configurable in game, no file editing required:
@@ -135,8 +147,6 @@ The About page also carries a **Changelog** and a **System Requirements** page, 
 Custom block groups live in `shaders/block.properties`; menu text lives in `shaders/lang/`. The validation tools ship in the separate **`-dev`** download — the normal release zip contains only `shaders/` and `LICENSE.txt`.
 
 ## 📜 Changelog
-
-See `CHANGELOG.md` for the full history. In short, the current version is **4.50**, and the largest changes since the 2.1 base are:
 
 * **Ray traced reflections, emissive blocks, volumetric clouds and sharpening** all arrived in 4.19–4.20.
 * **Light leaks closed** (4.21–4.24) — light no longer escapes through slabs, carpets, dirt paths or stairs.
