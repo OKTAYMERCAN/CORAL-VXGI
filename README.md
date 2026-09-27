@@ -70,6 +70,7 @@ I wanted to create my own shaderpack because the existing ones are either paid o
 
 ## 🗺️ Planned Features
 
+* 🔜 **Performance Improvements** — its almost perfect has more feature but I know even 5070Tİ gives low FPS so I'm gonna focus improve FPS. (mostly if possible not sacrifice visuals)
 * 🔜 **Distant Horizons and VOXY support** — far far land...
 
 ## 🐛 Known Issues
