@@ -175,6 +175,7 @@ Custom block groups live in `shaders/block.properties`; menu text lives in `shad
 * **Stained glass colours light** (4.55) — sun, sky, torch and bounced light alike; sunlit spots light up dark rooms.
 * **Clean first frames** (4.56–4.58) — no paint-like blots or grain on newly seen walls, and no light from the room next door.
 * **PBR resource packs** (4.58–4.61) — no black or see-through block rims, parallax for every pack resolution with lit sides, no parallax on glass, LabPBR Version, Normal Map Format and Texture Resolution settings, and each texture's place in the atlas measured instead of guessed.
+* **Preset updates and Some HRR remove** (4.61–4.64) — For performance improvements, Graphics profiles/presets has been completely reworked to improve performance. Due to recent issues, the Half Render Resolution (HRR) feature has been removed from shadows and reflections; it is now only applied to GI and Clouds.
 
 ---
 Contains AI-generated code, assets and text. Made with AI.
