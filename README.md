@@ -3,7 +3,7 @@
 ![Platform](https://img.shields.io/badge/platform-Minecraft%20Java-darkgreen.svg)
 ![Loader](https://img.shields.io/badge/requires-Iris%20%2B%20Sodium-blue.svg)
 ![PBR](https://img.shields.io/badge/LabPBR-supported-purple.svg)
-![Version](https://img.shields.io/badge/version-4.61-orange.svg)
+![Version](https://img.shields.io/badge/version-4.64-orange.svg)
 
 CORAL VXGI is a voxel based, real time **Ray Traced Global illumination** shaderpack for Minecraft Java Edition. Very customizable shaderpack — you can tinker with almost every setting from the in-game shader options.
 
