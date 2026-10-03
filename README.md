@@ -68,6 +68,9 @@ I wanted to create my own shaderpack because the existing ones are either paid o
 *(Shadows and Mob shadows)*
 <img width="2560" height="1365" alt="2026-09-26_00 46 01" src="https://github.com/user-attachments/assets/dc4ee608-f37f-45c9-955b-fba8b12c8682" />
 
+<img width="2189" height="911" alt="Screenshot_20260930_172725asdasd" src="https://github.com/user-attachments/assets/9181a07e-6207-40c0-a0ba-b68a6818e1df" />
+
+
 ## 🗺️ Planned Features
 
 * 🔜 **Performance Improvements** — its almost perfect has more feature but I know even 5070Tİ gives low FPS (because there is no HW RT acceleration in minecraft java) so I'm gonna focus improve FPS. (mostly if possible not sacrifice visuals)
