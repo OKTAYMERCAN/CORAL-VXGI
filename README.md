@@ -180,5 +180,32 @@ Custom block groups live in `shaders/block.properties`; menu text lives in `shad
 * **PBR resource packs** (4.58–4.61) — no black or see-through block rims, parallax for every pack resolution with lit sides, no parallax on glass, LabPBR Version, Normal Map Format and Texture Resolution settings, and each texture's place in the atlas measured instead of guessed.
 * **Preset updates and Some HRR remove** (4.61–4.64) — For performance improvements, Graphics profiles/presets has been completely reworked to improve performance. Due to recent issues, the Half Render Resolution (HRR) feature has been removed from shadows and reflections; it is now only applied to GI and Clouds.
 
+## Notice
+
+CORAL VXGI - Minecraft shaderpack
+Copyright (C) 2026 Oktay Mercan
+
+Licensed under the Coral Reef License, version 1.0.
+The full text of the license is in the LICENSE file.
+
+Official Source: https://github.com/OKTAYMERCAN/CORAL-VXGI
+  Any other official download pages (such as Modrinth or CurseForge)
+  are those listed as official in the README at the Official Source.
+Contact: oktaylamacera@gmail.com
+  If the Official Source is ever unavailable, you can ask for a copy
+  at this address.
+Governing law and courts: Republic of Türkiye
+
+Credit example:
+  Shaders: CORAL VXGI by Oktay Mercan - https://github.com/OKTAYMERCAN/CORAL-VXGI
+
+Modpacks: including a copy of CORAL VXGI in a modpack requires written
+permission from Oktay Mercan (section 11). A modpack that only refers
+to CORAL VXGI, so that players download it from an official page, needs no
+permission, but must give Credit and must not earn platform rewards or
+revenue (sections 3 and 11).
+
+This work comes with ABSOLUTELY NO WARRANTY.
+
 ---
 Contains AI-generated code, assets and text. Made with AI.
