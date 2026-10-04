@@ -209,5 +209,27 @@ revenue (sections 3 and 11).
 
 This work comes with ABSOLUTELY NO WARRANTY.
 
+## 🙏 Credits & Third-Party Code
+
+CORAL VXGI was written for this project — its voxel world, light grid, GI cache, water and denoiser are its own, and a review of the code (4.64) found nothing taken from other Minecraft shaderpacks. A few small, well-known functions are adapted from other people's published code under the MIT license; their copyright notices ship with the pack in **`THIRD_PARTY_NOTICES.txt`**, and each function names its source in a comment:
+
+| What | Where | Source | License |
+|---|---|---|---|
+| ACES filmic tonemap (fitted) | `program/final.glsl` | Stephen Hill's fit, as published in [BakingLab](https://github.com/TheRealMJP/BakingLab) by MJP and David Neubelt | MIT |
+| Lottes and Uchimura tonemaps | `program/final.glsl` | [glsl-tone-map](https://github.com/dmnsgn/glsl-tone-map) by Damien Seguin, after Timothy Lottes (GDC 2016) and Hajime Uchimura (CEDEC 2017) | MIT |
+| AgX tonemap | `program/final.glsl` | Benjamin Wrensch's [minimal AgX implementation](https://iolite-engine.com/blog_posts/minimal_agx_implementation), based on Troy Sobotka's [AgX](https://github.com/sobotka/AgX) | MIT |
+| `hash12` random hash | `lib/common.glsl` | David Hoskins, ["Hash without Sine"](https://www.shadertoy.com/view/4djSRW) | MIT |
+
+**Techniques and formulas** taken from published work (implemented here, no code copied):
+
+* **Sharpening** — the idea of RCAS from AMD FidelityFX Super Resolution 1; **FXAA** — Timothy Lottes (NVIDIA), in its widely used simplified form
+* **Tonemaps** — Reinhard et al. (2002); John Hable's Uncharted 2 filmic curve; the Unreal Engine 3 filmic approximation (Epic Games); Jodie's Reinhard variant (Shadertoy)
+* **Noise and sampling** — PCG3D hash (Jarzynski & Olano, JCGT 2020); interleaved gradient noise (Jorge Jimenez, SIGGRAPH 2014); the ATI 12-tap Poisson disk (Riguer, Tatarchuk & Isidoro, ShaderX2); value noise, its analytic derivatives and fbm (Inigo Quilez's articles; Ken Perlin's quintic fade); Halton sequences; cosine-weighted hemisphere sampling
+* **Encoding** — octahedral normal encoding (Cigolle, Donow, Evangelakos, Mara, McGuire & Meyer, JCGT 2014)
+* **Ray tracing and denoising** — voxel traversal (Amanatides & Woo 1987); resampled importance sampling (Talbot et al. 2005); the alias method (Walker 1977, Vose 1991); SVGF (Schied et al. 2017) and the à-trous wavelet filter (Dammertz et al. 2010); temporal anti-aliasing with neighbourhood clamping (Brian Karis, SIGGRAPH 2014); Sutherland–Hodgman polygon clipping
+* **Shading** — GGX (Walter et al. 2007), Schlick's Fresnel approximation (1994), the Henyey–Greenstein phase function, Beer–Lambert absorption, Snell's law
+
+**Standards and platform** — the [LabPBR material standard](https://shaderlabs.org/wiki/LabPBR_Material_Standard) (shaderLABS); [Iris](https://github.com/IrisShaders/Iris) and Sodium, whose shader pipeline the pack is built for. Minecraft is a trademark of Mojang Studios; the pack contains no Minecraft assets.
+
 ---
 Contains AI-generated code, assets and text. Made with AI.
