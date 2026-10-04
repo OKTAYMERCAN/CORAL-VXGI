@@ -70,6 +70,7 @@ I wanted to create my own shaderpack because the existing ones are either paid o
 
 <img width="2189" height="911" alt="Screenshot_20260930_172725asdasd" src="https://github.com/user-attachments/assets/9181a07e-6207-40c0-a0ba-b68a6818e1df" />
 
+<img width="2560" height="1370" alt="2026-10-04_19 22 16" src="https://github.com/user-attachments/assets/a004ed40-288d-47cd-8177-f9728c1bc95d" />
 
 ## 🗺️ Planned Features
 
