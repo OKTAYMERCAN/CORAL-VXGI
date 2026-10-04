@@ -102,6 +102,42 @@ for line in joined.split("\n"):
             if k not in bools:
                 errors.append(f"{pname.strip()}: {k} is not a boolean option")
 
+# 3d) PROFILES SET THE SAME KEYS, MEDIUM IS THE DEFAULTS (4.63). A key one profile sets and
+#     another leaves out keeps its old value when switching to the second one, so the profile
+#     then shows up as Custom or runs with a leftover (CLOUD_HALF_RES and VOXEL_TEXTURES were
+#     in no profile until 4.63). profile.comment says Medium matches the defaults.
+bool_default = {}
+for m in re.finditer(r"^(//)?#define (\w+)\s*(?://(?!\s*\[).*)?$", settings, flags=re.M):
+    if m.group(2) in bools: bool_default.setdefault(m.group(2), m.group(1) is None)
+num_default = {}
+for m in re.finditer(r"^#define (\w+)\s+(\S+)\s*//\s*\[", settings, flags=re.M):
+    num_default[m.group(1)] = m.group(2)
+for m in re.finditer(r"^const \w+ (\w+)\s*=\s*([^;]+);\s*//\s*\[", settings, flags=re.M):
+    num_default[m.group(1)] = m.group(2).strip()
+profiles = {}
+for line in joined.split("\n"):
+    st = line.strip()
+    if not st.startswith("profile."): continue
+    pname, body = st.split("=", 1)
+    d = {}
+    for tok in body.split():
+        if tok.startswith("profile."): continue
+        if "=" in tok: k, v = tok.split("=", 1); d[k] = v
+        else: d[tok.lstrip("!")] = not tok.startswith("!")
+    profiles[pname.strip()] = d
+if profiles:
+    keysets = {n: set(d) for n, d in profiles.items()}
+    allkeys = set().union(*keysets.values())
+    for n, ks in keysets.items():
+        for k in sorted(allkeys - ks):
+            errors.append(f"{n} does not set {k}, which another profile sets")
+    med = [n for n in profiles if "MEDIUM" in n]
+    for n in med:
+        for k, v in profiles[n].items():
+            dv = bool_default.get(k) if isinstance(v, bool) else num_default.get(k)
+            if dv is not None and dv != v:
+                errors.append(f"{n}: {k}={v} but the default in settings.glsl is {dv}")
+
 # 4) language file
 langkeys =set(k.split("=")[0] for k in lang.split("\n") if "=" in k and not k.startswith("#"))
 for o in all_opts:

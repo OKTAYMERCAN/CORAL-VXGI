@@ -104,30 +104,21 @@ PROGRAMS = [
     ("deferred5",            "program/denoise3.glsl",        V330, {}, [], None),
     # Volumetric clouds, marched once per frame before the lighting pass (4.53): the screen at
     # half resolution with Half Resolution Clouds (full without; Iris reads workGroupsRender
-    # after the preprocessor), and a quarter of the 512 x 512 dome that reflections read.
+    # after the preprocessor), and a sixteenth of the 512 x 512 dome that reflections read (a quarter
+    # until 4.61).
     ("deferred6_a",          "program/clouds_render.glsl",   V430, {}, ["CLOUD_SCREEN"],
         ("layout(local_size_x = 8, local_size_y = 8, local_size_z = 1) in;",
          '#include "/lib/settings.glsl"\n#ifdef CLOUD_HALF_RES\nconst vec2 workGroupsRender = vec2(0.5, 0.5);\n#else\nconst vec2 workGroupsRender = vec2(1.0, 1.0);\n#endif',
          "Volumetric clouds of the screen (program/clouds_render.glsl).")),
     ("deferred6_b",          "program/clouds_render.glsl",   V430, {}, ["CLOUD_DOME"],
         ("layout(local_size_x = 8, local_size_y = 8, local_size_z = 1) in;",
-         "const ivec3 workGroups = ivec3(32, 32, 1);",
+         "const ivec3 workGroups = ivec3(16, 16, 1);",
          "Volumetric clouds in every direction, for reflections (program/clouds_render.glsl).")),
-    # Half resolution sun shadows (SHADOW_HALF_RES, 4.53); a single empty work group without them
-    ("deferred6_c",          "program/shadow_half.glsl",     V430, {}, [],
-        ("layout(local_size_x = 8, local_size_y = 8, local_size_z = 1) in;",
-         '#include "/lib/settings.glsl"\n#ifdef SHADOW_HALF_ACTIVE\nconst vec2 workGroupsRender = vec2(0.5, 0.5);\n#else\nconst ivec3 workGroups = ivec3(1, 1, 1);\n#endif',
-         "Half resolution sun shadows (program/shadow_half.glsl).")),
     ("deferred6",            "program/lighting.glsl",        V330, {}, [], None),
     # --- post-processing ---
-    # Half resolution reflections (REFLECTION_HALF_RES, 4.53): traces one pixel in every 2 x 2 for
-    # composite. Without the option the pass is a single empty work group.
-    ("composite_a",          "program/composite.glsl",       V430, {}, ["REFLECTION_PASS"],
-        ("layout(local_size_x = 8, local_size_y = 8, local_size_z = 1) in;",
-         '#include "/lib/settings.glsl"\n#ifdef REFLECTION_HALF_ACTIVE\nconst vec2 workGroupsRender = vec2(0.5, 0.5);\n#else\nconst ivec3 workGroups = ivec3(1, 1, 1);\n#endif',
-         "Half resolution reflections (program/composite.glsl, REFLECTION_PASS).")),
-    # The fragment shader reads the cloud dome and the half resolution reflections with image
-    # loads (lib/sky.glsl CLOUD_DOME_READ, program/composite.glsl REFLECTION_HALF_ACTIVE)
+    # The fragment shader reads the cloud dome with image loads (lib/sky.glsl CLOUD_DOME_READ).
+    # (deferred6_c, half resolution shadows, and composite_a, half resolution reflections,
+    # 4.53 - 4.63, were removed in 4.64.)
     ("composite",            "program/composite.glsl",       V330, {"fsh": ["GL_ARB_shader_image_load_store : enable"]}, [], None),
     # Clears the part of the light grid the shadow pass adds to (4.54): the home masks and the
     # far field, LG_CLUSTER_X0 columns (at most 173, Voxel Range 384) by LG_ROWS rows (at most

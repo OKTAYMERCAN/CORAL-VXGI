@@ -394,15 +394,17 @@ gridT = tex2(R32UI, REDI, UINT, GRID_W, LG_ROWS, HOME)
 
 # screen buffers: two copies each (Iris flips them), formats of lib/pipeline.glsl
 FMT = {0: (RGBA16F, FLOAT), 1: (RGBA16, USHORT), 2: (RGBA8, UBYTE), 3: (RGBA16F, FLOAT), 4: (RGBA16F, FLOAT), 5: (RGBA16, USHORT),
-       6: (RGBA8, UBYTE), 7: (R32F, FLOAT), 8: (RGBA16F, FLOAT), 9: (RGBA16F, FLOAT), 10: (RGBA16F, FLOAT), 11: (RGBA16F, FLOAT)}
+       6: (RGBA8, UBYTE), 7: (R32F, FLOAT), 8: (RGBA16F, FLOAT), 9: (RGBA16F, FLOAT), 10: (RGBA16F, FLOAT), 11: (RGBA16F, FLOAT),
+       12: (0x8814, FLOAT)}   # colortex12: the a-trous guide, RGBA32F (4.62)
+NCT = len(FMT)
 CLEARED = {0, 1, 2, 3, 5, 6, 8, 9}
 def mk(n):
     ifmt, typ = FMT[n]
     t = tex2(ifmt, RED if ifmt == R32F else RGBA, typ, W, H)
     glTexParameteri(T2D, 0x2801, 0x2601); glTexParameteri(T2D, 0x2800, 0x2601)
     return t
-CT = {n: [mk(n), mk(n)] for n in range(12)}
-CUR = {n: 0 for n in range(12)}
+CT = {n: [mk(n), mk(n)] for n in range(NCT)}
+CUR = {n: 0 for n in range(NCT)}
 depth0T = tex2(R32F, RED, FLOAT, W, H); depth1T = tex2(R32F, RED, FLOAT, W, H); depthOpT = tex2(R32F, RED, FLOAT, W, H)
 screenT = tex2(RGBA8, RGBA, UBYTE, W, H)
 
@@ -687,8 +689,10 @@ def quad():
         glMultiTexCoord2f(0x84C0, x, y); glVertex2f(x * 2 - 1, y * 2 - 1)
     glEnd()
 
+# (deferred6_c and composite_a, the half resolution shadow and reflection passes of 4.53 - 4.63,
+#  stay listed so that older trees can still be compared; a tree without them skips them)
 PASSES = [("deferred_a", "cs", (16384, 1, 1)), ("deferred_b", "cs", (16, 16, 16)), ("deferred_c", "cs", (1024, 1, 1)),
-          ("deferred", [3]), ("deferred1", [4, 7]), ("deferred2", [8]), ("deferred3", [9]), ("deferred4", [8]), ("deferred5", [9]),
+          ("deferred", [3]), ("deferred1", [4, 7]), ("deferred2", [8, 12]), ("deferred3", [9]), ("deferred4", [8]), ("deferred5", [9]),
           ("deferred6_a", "cs", None), ("deferred6_b", "cs", None), ("deferred6_c", "cs", None), ("deferred6", [0, 6]), ("waterblend", None), ("composite_a", "cs", None), ("composite", [0, 11]), ("composite1", [0, 10]), ("composite2", [0]), ("final", "screen")]
 
 def run_pass(name, kind, progs, U, depth_mode):
@@ -696,7 +700,7 @@ def run_pass(name, kind, progs, U, depth_mode):
     extra = {"depthtex0": (T2D, depthOpT if depth_mode == "opaque" else depth0T), "depthtex1": (T2D, depth1T)}
     if kind == "cs" or isinstance(kind, tuple):
         pass
-    for n in range(12): extra["colortex%d" % n] = (T2D, CT[n][CUR[n]])
+    for n in range(NCT): extra["colortex%d" % n] = (T2D, CT[n][CUR[n]])
     set_uniforms(p, U[name], extra)
     return p
 
@@ -811,7 +815,7 @@ def draw_entities(work, cam, shift):
     glBindFramebuffer(0x8D40, 0)
 
 def reset_history():
-    for n in range(12):
+    for n in range(NCT):
         for k in (0, 1):
             attach([CT[n][k]]); glClearColor(0, 0, 0, 0); glClear(0x4000)
     up3(cacheT, RGBA16F, RGBA, FLOAT, (12 * CS, CS, CS), np.zeros((CS, CS, 12 * CS, 4), np.float32))
@@ -938,6 +942,11 @@ def run_tree(label, work):
             g_ = np.zeros((LG_ROWS, GRID_W), np.uint32); glBindTexture(T2D, gridT)
             glGetTexImage(T2D, 0, REDI, UINT, g_.ctypes.data_as(c_void_p))
             np.save("%s_grid_%s_%s.npy" % (os.environ.get("OUT", os.path.join(WORK, "prof")), label, vname.replace(" ", "_")), g_)
+        if os.environ.get("DUMPHALF"):     # half resolution shadow image (trees 4.53 - 4.63)
+            hw, hh = (W + 1) // 2, (H + 1) // 2
+            a_ = np.zeros((hh, hw, 4), np.float32); glBindTexture(T2D, shHalfT)
+            glGetTexImage(T2D, 0, RGBA, FLOAT, a_.ctypes.data_as(c_void_p))
+            np.save("%s_half_%s_%s.npy" % (os.environ.get("OUT", os.path.join(WORK, "prof")), label, vname.replace(" ", "_")), a_)
         ldr = read_tex(screenT, RGBA, UBYTE)[..., :3].copy()
         results[vname] = (timing, hdr, ldr)
     return results
