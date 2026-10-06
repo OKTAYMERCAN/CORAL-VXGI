@@ -5,7 +5,7 @@
 ![PBR](https://img.shields.io/badge/LabPBR-supported-purple.svg)
 ![Version](https://img.shields.io/badge/version-4.64-orange.svg)
 
-CORAL VXGI is a voxel based, real time **Ray Traced Global illumination** shaderpack for Minecraft Java Edition. Very customizable shaderpack — you can tinker with almost every setting from the in-game shader options.
+CORAL VXGI is a **Voxel Based, real time Ray Traced Global illumination** shaderpack for Minecraft Java Edition.
 
 I wanted to create my own shaderpack because the existing ones are either paid or locked behind paywalls or subscriptions, which is frustrating. I decided to make my own, but due to life circumstances, I didn't have the time or the necessary skills to do it from scratch. So I purchased a paid AI subscription (Claude Pro) and then started making CORAL VXGI to test how much the technology has advanced and what it's capable of, while also bringing my dream of a flawless shaderpack to life to share with the community.
 
@@ -72,6 +72,10 @@ I wanted to create my own shaderpack because the existing ones are either paid o
 <img width="2189" height="911" alt="Screenshot_20260930_172725asdasd" src="https://github.com/user-attachments/assets/9181a07e-6207-40c0-a0ba-b68a6818e1df" />
 
 <img width="2560" height="1370" alt="2026-10-04_19 22 16" src="https://github.com/user-attachments/assets/a004ed40-288d-47cd-8177-f9728c1bc95d" />
+
+*(Laptop)*
+<img width="2560" height="1394" alt="image" src="https://github.com/user-attachments/assets/becd8333-2a24-4540-8442-487eeb11c719" />
+
 
 ## 🗺️ Planned Features
 
@@ -181,33 +185,6 @@ Custom block groups live in `shaders/block.properties`; menu text lives in `shad
 * **Clean first frames** (4.56–4.58) — no paint-like blots or grain on newly seen walls, and no light from the room next door.
 * **PBR resource packs** (4.58–4.61) — no black or see-through block rims, parallax for every pack resolution with lit sides, no parallax on glass, LabPBR Version, Normal Map Format and Texture Resolution settings, and each texture's place in the atlas measured instead of guessed.
 * **Preset updates and Some HRR remove** (4.61–4.64) — For performance improvements, Graphics profiles/presets has been completely reworked to improve performance. Due to recent issues, the Half Render Resolution (HRR) feature has been removed from shadows and reflections; it is now only applied to GI and Clouds.
-
-## Notice
-
-CORAL VXGI - Minecraft shaderpack
-Copyright (C) 2026 Oktay Mercan
-
-Licensed under the Coral Reef License, version 1.0.
-The full text of the license is in the LICENSE file.
-
-Official Source: https://github.com/OKTAYMERCAN/CORAL-VXGI
-  Any other official download pages (such as Modrinth or CurseForge)
-  are those listed as official in the README at the Official Source.
-Contact: oktaylamacera@gmail.com
-  If the Official Source is ever unavailable, you can ask for a copy
-  at this address.
-Governing law and courts: Republic of Türkiye
-
-Credit example:
-  Shaders: CORAL VXGI by Oktay Mercan - https://github.com/OKTAYMERCAN/CORAL-VXGI
-
-Modpacks: including a copy of CORAL VXGI in a modpack requires written
-permission from Oktay Mercan (section 11). A modpack that only refers
-to CORAL VXGI, so that players download it from an official page, needs no
-permission, but must give Credit and must not earn platform rewards or
-revenue (sections 3 and 11).
-
-This work comes with ABSOLUTELY NO WARRANTY.
 
 ## 🙏 Credits & Third-Party Code
 
