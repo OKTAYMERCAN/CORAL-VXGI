@@ -62,6 +62,10 @@ I wanted to create my own shaderpack because the existing ones are either paid o
 
 <img width="2560" height="1365" alt="2026-09-25_00 43 33" src="https://github.com/user-attachments/assets/50166e05-08e5-45d5-bd56-fd873e79f5ba" />
 
+*(Volumetric Clouds)*
+<img width="2560" height="1370" alt="2026-09-30_20 34 08" src="https://github.com/user-attachments/assets/ab5f4b09-b4d0-4a11-bacc-88fd93dd68d8" />
+
+
 *(PBR)*
 <img width="2560" height="1365" alt="2026-09-26_00 50 05" src="https://github.com/user-attachments/assets/f65e5f02-67bb-4d32-b907-6f92f83b85bd" />
 
